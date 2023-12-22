@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:find_a_match_game_app/screens/loading/loading_screen.dart';
 import 'package:find_a_match_game_app/screens/lobby/lobby_screen.dart';
 import 'package:find_a_match_game_app/screens/onboarding/onboarding_screen.dart';
+import 'package:find_a_match_game_app/screens/settings/settings_screen.dart';
 
 part 'router.gr.dart';
 
@@ -13,5 +14,7 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: LoadingRoute.page, initial: true),
     AutoRoute(page: OnboardingRoute.page),
     AutoRoute(page: LobbyRoute.page),
+    AutoRoute(page: SettingsRoute.page),
+
   ];
 }

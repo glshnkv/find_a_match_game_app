@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:find_a_match_game_app/router/router.dart';
 import 'package:find_a_match_game_app/screens/lobby/widgets/level_card_widget.dart';
 import 'package:find_a_match_game_app/theme/colors.dart';
+import 'package:find_a_match_game_app/widgets/scores/scores_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -26,6 +28,26 @@ class _LobbyScreenState extends State<LobbyScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        context.router.push(SettingsRoute());
+                      },
+                      child: SvgPicture.asset(
+                        'assets/images/elements/settings-button.svg',
+                        width: 65,
+                      ),
+                    ),
+                    ScoresWidget(),
+                  ],
+                ),
+              ),
+            ),
             Expanded(
               child: SizedBox(
                 width: double.infinity,
@@ -73,16 +95,14 @@ class _LobbyScreenState extends State<LobbyScreen> {
                   onTap: () {
                     if (_current == 0) {
                       // context.router.push();
-                    } else if (_current == 1) {
+                    } else if (_current == 1 || _current == 2) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text('No access'),
-                        ),
-                      );
-                    } else if (_current == 2) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('No access'),
+                          backgroundColor: AppColors.red,
+                          content: Text(
+                            'No access',
+                            style: TextStyle(color: AppColors.white),
+                          ),
                         ),
                       );
                     }
