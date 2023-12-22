@@ -20,6 +20,7 @@ dependencies:
   get_it: ^7.6.4
   flutter_native_splash: ^2.3.7
   percent_indicator: ^4.2.3
+  carousel_slider: ^4.2.1
 
   cupertino_icons: ^1.0.2
 
@@ -38,7 +39,9 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images
+    - assets/images/
+    - assets/images/onboarding/
+    - assets/images/lobby/
 
   fonts:
     - family: Poppins
@@ -47,3 +50,7 @@ flutter:
         - asset: fonts/Poppins-Medium.ttf
         - asset: fonts/Poppins-Bold.ttf
         - asset: fonts/Poppins-ExtraBold.ttf
+
+    - family: ChangaOne
+      fonts:
+        - asset: fonts/ChangaOne-Regular.ttf

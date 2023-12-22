@@ -10,14 +10,10 @@ class FindMatchGameApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
-    ]);
     return MaterialApp.router(
-      theme: ThemeData(fontFamily: 'Poppins'),
+      theme: ThemeData(fontFamily: 'ChangaOne'),
       routerConfig: _appRouter.config(),
       debugShowCheckedModeBanner: false,
-    );;
+    );
   }
 }
