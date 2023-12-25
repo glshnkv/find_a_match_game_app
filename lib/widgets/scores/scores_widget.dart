@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:find_a_match_game_app/repository/coins_repository.dart';
 import 'package:find_a_match_game_app/repository/hearts_repository.dart';
+import 'package:find_a_match_game_app/services/shared_preferences.dart';
 import 'package:find_a_match_game_app/theme/colors.dart';
 import 'package:find_a_match_game_app/widgets/scores/bloc/scores_bloc.dart';
 import 'package:flutter/material.dart';
@@ -19,15 +20,33 @@ class ScoresWidget extends StatefulWidget {
 
 class _ScoresWidgetState extends State<ScoresWidget> {
 
+  Timer? _timer;
+
+  @override
+  void initState() {
+    _startTimer();
+    super.initState();
+  }
+
+  void _startTimer() async {
+    SharedPreferencesService storage =
+        await SharedPreferencesService.getInstance();
+    _timer = Timer.periodic(const Duration(hours: 1), (timer) {
+      if (storage.hearts < 10) {
+        storage.hearts += 1;
+      }
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-      ScoresBloc(GetIt.I<HeartsRepository>(), GetIt.I<CoinsRepository>())
-        ..add(GetScoresEvent()),
+          ScoresBloc(GetIt.I<HeartsRepository>(), GetIt.I<CoinsRepository>())
+            ..add(GetScoresEvent()),
       child: BlocConsumer<ScoresBloc, ScoresState>(
-        listener: (context, state) {
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           if (state is UpdateScoresState) {
             final _coins = state.coins;
