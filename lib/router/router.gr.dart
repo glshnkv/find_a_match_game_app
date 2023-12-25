@@ -15,6 +15,22 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    GameRoute.name: (routeData) {
+      final args = routeData.argsAs<GameRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: GameScreen(
+          key: args.key,
+          level: args.level,
+        ),
+      );
+    },
+    LevelsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const LevelsScreen(),
+      );
+    },
     LoadingRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -39,7 +55,68 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SettingsScreen(),
       );
     },
+    WinRoute.name: (routeData) {
+      final args = routeData.argsAs<WinRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: WinScreen(
+          key: args.key,
+          level: args.level,
+        ),
+      );
+    },
   };
+}
+
+/// generated route for
+/// [GameScreen]
+class GameRoute extends PageRouteInfo<GameRouteArgs> {
+  GameRoute({
+    Key? key,
+    required LevelModel level,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GameRoute.name,
+          args: GameRouteArgs(
+            key: key,
+            level: level,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GameRoute';
+
+  static const PageInfo<GameRouteArgs> page = PageInfo<GameRouteArgs>(name);
+}
+
+class GameRouteArgs {
+  const GameRouteArgs({
+    this.key,
+    required this.level,
+  });
+
+  final Key? key;
+
+  final LevelModel level;
+
+  @override
+  String toString() {
+    return 'GameRouteArgs{key: $key, level: $level}';
+  }
+}
+
+/// generated route for
+/// [LevelsScreen]
+class LevelsRoute extends PageRouteInfo<void> {
+  const LevelsRoute({List<PageRouteInfo>? children})
+      : super(
+          LevelsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LevelsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -96,4 +173,41 @@ class SettingsRoute extends PageRouteInfo<void> {
   static const String name = 'SettingsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [WinScreen]
+class WinRoute extends PageRouteInfo<WinRouteArgs> {
+  WinRoute({
+    Key? key,
+    required LevelModel level,
+    List<PageRouteInfo>? children,
+  }) : super(
+          WinRoute.name,
+          args: WinRouteArgs(
+            key: key,
+            level: level,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'WinRoute';
+
+  static const PageInfo<WinRouteArgs> page = PageInfo<WinRouteArgs>(name);
+}
+
+class WinRouteArgs {
+  const WinRouteArgs({
+    this.key,
+    required this.level,
+  });
+
+  final Key? key;
+
+  final LevelModel level;
+
+  @override
+  String toString() {
+    return 'WinRouteArgs{key: $key, level: $level}';
+  }
 }

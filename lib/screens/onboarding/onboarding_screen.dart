@@ -21,9 +21,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: [
           Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Spacer(),
+                Spacer(flex: 5,),
                 Container(
                   decoration: BoxDecoration(
                       color: AppColors.yellow,
@@ -59,26 +58,29 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 20,
+                Spacer(
+                  flex: 2,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    context.router.push(LobbyRoute());
-                  },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        'assets/images/onboarding/start-button.svg',
-                        width: 400,
-                      ),
-                      Text(
-                        'Start',
-                        style:
-                            TextStyle(color: AppColors.darkblue, fontSize: 30),
-                      ),
-                    ],
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      context.router.push(LobbyRoute());
+                    },
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/images/onboarding/start-button.svg',
+                          width: 400,
+                        ),
+                        Text(
+                          'Start',
+                          style:
+                              TextStyle(color: AppColors.darkblue, fontSize: 30),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -88,6 +90,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             alignment: Alignment.centerLeft,
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.26,
+              height: MediaQuery.of(context).size.height * 0.9,
               child:
                   SvgPicture.asset('assets/images/onboarding/tree-element.svg'),
             ),
@@ -98,6 +101,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               flipX: true,
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.26,
+                height: MediaQuery.of(context).size.height * 0.9,
                 child: SvgPicture.asset(
                   'assets/images/onboarding/tree-element.svg',
                 ),

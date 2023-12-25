@@ -25,122 +25,125 @@ class _LobbyScreenState extends State<LobbyScreen> {
     return Scaffold(
       backgroundColor: AppColors.green,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        context.router.push(SettingsRoute());
-                      },
-                      child: SvgPicture.asset(
-                        'assets/images/elements/settings-button.svg',
-                        width: 65,
-                      ),
-                    ),
-                    ScoresWidget(),
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              child: SizedBox(
-                width: double.infinity,
-                child: CarouselSlider(
-                  options: CarouselOptions(
-                    enlargeCenterPage: true,
-                    aspectRatio: 9 / 16,
-                    enableInfiniteScroll: false,
-                    viewportFraction: 0.5,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        _current = index;
-                      });
-                    },
-                  ),
-                  carouselController: _carouselController,
-                  items: [
-                    LevelCardWidget(title: 'Simple level'),
-                    LevelCardWidget(title: 'Middle level'),
-                    LevelCardWidget(title: 'Hard level'),
-                  ],
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _current == 0
-                    ? SizedBox(
-                        width: 40,
-                      )
-                    : GestureDetector(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
                         onTap: () {
-                          _carouselController.previousPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.ease);
+                          context.router.push(SettingsRoute());
                         },
                         child: SvgPicture.asset(
-                          'assets/images/lobby/previous-button.svg',
-                          width: 40,
+                          'assets/images/elements/settings-button.svg',
+                          width: 65,
                         ),
                       ),
-                SizedBox(width: 10),
-                GestureDetector(
-                  onTap: () {
-                    if (_current == 0) {
-                      // context.router.push();
-                    } else if (_current == 1 || _current == 2) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          backgroundColor: AppColors.red,
-                          content: Text(
-                            'No access',
-                            style: TextStyle(color: AppColors.white),
-                          ),
-                        ),
-                      );
-                    }
-                  },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        'assets/images/lobby/start-button.svg',
-                        width: 315,
-                      ),
-                      Text(
-                        'Start',
-                        style:
-                            TextStyle(color: AppColors.darkblue, fontSize: 20),
-                      ),
+                      ScoresWidget(),
                     ],
                   ),
                 ),
-                SizedBox(width: 10),
-                _current == 2
-                    ? SizedBox(
-                        width: 40,
-                      )
-                    : GestureDetector(
-                        onTap: () {
-                          _carouselController.nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.ease);
-                        },
-                        child: SvgPicture.asset(
-                          'assets/images/lobby/next-button.svg',
+              ),
+              Expanded(
+                child: SizedBox(
+                  width: double.infinity,
+                  child: CarouselSlider(
+                    options: CarouselOptions(
+                      enlargeCenterPage: true,
+                      aspectRatio: 9 / 16,
+                      enableInfiniteScroll: false,
+                      viewportFraction: 0.5,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          _current = index;
+                        });
+                      },
+                    ),
+                    carouselController: _carouselController,
+                    items: [
+                      LevelCardWidget(title: 'Simple level'),
+                      LevelCardWidget(title: 'Middle level'),
+                      LevelCardWidget(title: 'Hard level'),
+                    ],
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _current == 0
+                      ? SizedBox(
                           width: 40,
+                        )
+                      : GestureDetector(
+                          onTap: () {
+                            _carouselController.previousPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.ease);
+                          },
+                          child: SvgPicture.asset(
+                            'assets/images/lobby/previous-button.svg',
+                            width: 40,
+                          ),
                         ),
-                      ),
-              ],
-            ),
-          ],
+                  SizedBox(width: 10),
+                  GestureDetector(
+                    onTap: () {
+                      if (_current == 0) {
+                        context.router.push(LevelsRoute());
+                      } else if (_current == 1 || _current == 2) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: AppColors.red,
+                            content: Text(
+                              'No access',
+                              style: TextStyle(color: AppColors.white),
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/images/lobby/start-button.svg',
+                          width: 315,
+                        ),
+                        Text(
+                          'Start',
+                          style:
+                              TextStyle(color: AppColors.darkblue, fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  _current == 2
+                      ? SizedBox(
+                          width: 40,
+                        )
+                      : GestureDetector(
+                          onTap: () {
+                            _carouselController.nextPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.ease);
+                          },
+                          child: SvgPicture.asset(
+                            'assets/images/lobby/next-button.svg',
+                            width: 40,
+                          ),
+                        ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
